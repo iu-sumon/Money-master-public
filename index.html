@@ -29,29 +29,29 @@
                         <h3 class="text-center text-white">Salary</h3>
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="text-center pt-2  text-white">Salary:</p>
-                            <input type="number" value="0">
+                            <input id="salary-field" type="text">
                         </div>
                        
                         <h3 class="text-center  text-white">Expenses</h3>
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="text-center  text-white pt-2">Food:</p>
-                            <input type="number" value="0">
+                            <input id="food-field" type="text">
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="text-center  text-white pt-2">Rent:</p>
-                            <input type="number" value="0">
+                            <input id="rent-field" type="text"  >
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="text-center  text-white pt-2">Clothes:</p>
-                            <input type="number" value="0">
+                            <input id="clothes-field" type="text"  >
                         </div>
-                         <button type="button" class="btn btn-info btn-outline-dark text-center  text-white d-block mx-auto">Calculate</button>
-                        <p class="text-center  text-white">Total Expenses:<span>0</span></p>
+                         <button id="calculate-btn" type="button" class="btn btn-info btn-outline-dark text-center  text-white d-block mx-auto">Calculate</button>
+                        <p class="text-center  text-white">Total Expenses:<span id="total-expenses">0</span></p>
                         <p class="text-center  text-white">Balance:<span>0</span></p>
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="text-center  text-white pt-2">Save:</p>
                             
-                            <input type="number" value="0">
+                            <input type="text">
                             <p class="px-2 pt-2  text-white">%</p>
                             <button type="button"
                                 class="btn btn-info text-center btn-outline-dark  text-white px-4">Save</button>
@@ -68,16 +68,7 @@
             </div>
         </section>
     </main>
-
-
-
-
-
-
-
-
-
-    <script src="js/index.js"></script>
+ <script src="js/index.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
