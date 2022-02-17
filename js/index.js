@@ -53,10 +53,9 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     else {
         const currentTotalExpenses = getTotalExpenses(currentFoodAmount, currentRentAmount, currentClothesAmount);
         getBalance(currentSalaryAmount, currentTotalExpenses);
-        if(currentTotalExpenses>currentSalaryAmount)
-        {
-            const insufficientSalary=document.getElementById('insufficient-salary');
-            insufficientSalary.style.display='block';
+        if (currentTotalExpenses > currentSalaryAmount) {
+            const insufficientSalary = document.getElementById('insufficient-salary');
+            insufficientSalary.style.display = 'block';
 
         }
 
@@ -67,6 +66,7 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const newSalaryAmount = getInput('salary');
     const notifyNegative = document.getElementById('notify-negative')
     const notifyNan = document.getElementById('notify-nan')
+
     const newSavingAmount = getSavingAmount(newSalaryAmount, newSavePercentage);
     const currentBalance = document.getElementById('balance').innerText;
     if (newSavePercentage < 0 || newSalaryAmount < 0) {
@@ -91,7 +91,7 @@ document.getElementById('save-btn').addEventListener('click', function () {
 
     }
 
-
+   
 
 })
 
