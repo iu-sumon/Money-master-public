@@ -36,20 +36,63 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const currentRentAmount = getInput('rent');
     const currentClothesAmount = getInput('clothes');
     const currentSalaryAmount = getInput('salary');
-    const currentTotalExpenses = getTotalExpenses(currentFoodAmount, currentRentAmount, currentClothesAmount);
-    getBalance(currentSalaryAmount, currentTotalExpenses);
+    const notifyNegative = document.getElementById('notify-negative')
+    const notifyNan = document.getElementById('notify-nan')
 
+
+    if (currentFoodAmount < 0 || currentRentAmount < 0 || currentClothesAmount < 0 || currentSalaryAmount < 0) {
+
+        notifyNegative.style.display = 'block';
+        notifyNan.style.display = 'none';
+    }
+    else if (isNaN(currentFoodAmount) || isNaN(currentRentAmount) || isNaN(currentClothesAmount) || isNaN(currentSalaryAmount)) {
+        notifyNan.style.display = 'block';
+        notifyNegative.style.display = 'none';
+    }
+
+    else {
+        const currentTotalExpenses = getTotalExpenses(currentFoodAmount, currentRentAmount, currentClothesAmount);
+        getBalance(currentSalaryAmount, currentTotalExpenses);
+        if(currentTotalExpenses>currentSalaryAmount)
+        {
+            const insufficientSalary=document.getElementById('insufficient-salary');
+            insufficientSalary.style.display='block';
+
+        }
+
+    }
 })
 document.getElementById('save-btn').addEventListener('click', function () {
     const newSavePercentage = getInput('save');
     const newSalaryAmount = getInput('salary');
-   const newSavingAmount=  getSavingAmount(newSalaryAmount, newSavePercentage);
-   const  currentBalance=document.getElementById('balance').innerText;
-    const previousRemainingBalance = document.getElementById('remaining-balance');
-     const previousRemainingBalanceValue = parseFloat(previousRemainingBalance.innerText);
-     const updateRemainingBalance=(currentBalance-newSavingAmount);
-     previousRemainingBalance.innerText = updateRemainingBalance;
-    
+    const notifyNegative = document.getElementById('notify-negative')
+    const notifyNan = document.getElementById('notify-nan')
+    const newSavingAmount = getSavingAmount(newSalaryAmount, newSavePercentage);
+    const currentBalance = document.getElementById('balance').innerText;
+    if (newSavePercentage < 0 || newSalaryAmount < 0) {
+        notifyNegative.style.display = 'block';
+        notifyNan.style.display = 'none';
+    }
+    else if (isNaN(newSavePercentage) || isNaN(newSalaryAmount)) {
+        notifyNan.style.display = 'block';
+        notifyNegative.style.display = 'none';
+    }
+
+    else if (newSavingAmount > currentBalance) {
+        const insufficientBalance = document.getElementById('insufficient-balance');
+        insufficientBalance.style.display = 'block';
+    }
+
+    else {
+        const previousRemainingBalance = document.getElementById('remaining-balance');
+        const previousRemainingBalanceValue = parseFloat(previousRemainingBalance.innerText);
+        const updateRemainingBalance = (currentBalance - newSavingAmount);
+        previousRemainingBalance.innerText = updateRemainingBalance;
+
+    }
+
+
+
 })
 
 
@@ -63,9 +106,6 @@ document.getElementById('save-btn').addEventListener('click', function () {
 
 
 
-// function getRemainingBalance(updateBalanceAmount, UpdateSavingAmount) {
-   
-// }
 
 
 
