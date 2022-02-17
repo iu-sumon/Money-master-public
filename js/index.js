@@ -50,8 +50,7 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const currentClothesAmount = getInput('clothes');
     const currentSalaryAmount = getInput('salary');
     const notifyNegative = document.getElementById('notify-negative')
-    const notifyNan = document.getElementById('notify-nan')
-
+    
     //..................Control Error Message code Start here.............\\
 
     if (currentFoodAmount < 0 || currentRentAmount < 0 || currentClothesAmount < 0 || currentSalaryAmount < 0) {
@@ -59,21 +58,17 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
         notifyNegative.style.display = 'block';
         notifyNan.style.display = 'none';
     }
-    else if (isNaN(currentFoodAmount) || isNaN(currentRentAmount) || isNaN(currentClothesAmount) || isNaN(currentSalaryAmount)) {
-        notifyNan.style.display = 'block';
-        notifyNegative.style.display = 'none';
-    }
-
-    else {
-
+     else if (currentSalaryAmount > (currentFoodAmount + currentRentAmount + currentClothesAmount)) {
         const currentTotalExpenses = getTotalExpenses(currentFoodAmount, currentRentAmount, currentClothesAmount);
         getBalance(currentSalaryAmount, currentTotalExpenses);
-        if (currentTotalExpenses > currentSalaryAmount) {
-            const insufficientSalary = document.getElementById('insufficient-salary');
-            insufficientSalary.style.display = 'block';
-        }
     }
- //..................Control Error Message code End here..................\\
+    else
+    {
+        const insufficientSalary = document.getElementById('insufficient-salary');
+        insufficientSalary.style.display = 'block';
+    }
+
+     //..................Control Error Message code End here..................\\
 
 })
 
@@ -88,30 +83,28 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const newSavePercentage = getInput('save');
     const newSalaryAmount = getInput('salary');
     const notifyNegative = document.getElementById('notify-negative')
-    const notifyNan = document.getElementById('notify-nan')
-    const newSavingAmount = getSavingAmount(newSalaryAmount, newSavePercentage);
     const currentBalance = document.getElementById('balance').innerText;
 
     //..................Control Error Message code Start here............\\
 
-    if (newSavePercentage < 0 || newSalaryAmount < 0) {
+    if (newSavePercentage > 0 &&  newSalaryAmount > 0) {
+        const newSavingAmount = getSavingAmount(newSalaryAmount, newSavePercentage);
+        if (newSavingAmount > currentBalance) {
+            const insufficientBalance = document.getElementById('insufficient-balance');
+            insufficientBalance.style.display = 'block';
+           }
+           else {
+            const previousRemainingBalance = document.getElementById('remaining-balance');
+            const previousRemainingBalanceValue = parseFloat(previousRemainingBalance.innerText);
+            const updateRemainingBalance = (currentBalance - newSavingAmount);
+            previousRemainingBalance.innerText = updateRemainingBalance;
+    
+        }
+     }
+    else if (newSavePercentage < 0 || newSalaryAmount < 0)
+    {
         notifyNegative.style.display = 'block';
         notifyNan.style.display = 'none';
-    }
-    else if (isNaN(newSavePercentage) || isNaN(newSalaryAmount)) {
-        notifyNan.style.display = 'block';
-        notifyNegative.style.display = 'none';
-    }
-    else if (newSavingAmount > currentBalance) {
-        const insufficientBalance = document.getElementById('insufficient-balance');
-        insufficientBalance.style.display = 'block';
-    }
-    else {
-        const previousRemainingBalance = document.getElementById('remaining-balance');
-        const previousRemainingBalanceValue = parseFloat(previousRemainingBalance.innerText);
-        const updateRemainingBalance = (currentBalance - newSavingAmount);
-        previousRemainingBalance.innerText = updateRemainingBalance;
-
     }
 //..................Control Error Message code End here..................\\
 })

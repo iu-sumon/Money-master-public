@@ -19,4 +19,12 @@ body{
     display:none ;
     
 }
+@media only screen and (max-width:320px)
+{ .saving-item
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
 /* --------------------End---------------------- */ 
